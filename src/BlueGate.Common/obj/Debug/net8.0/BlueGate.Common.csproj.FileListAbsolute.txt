@@ -1,0 +1,11 @@
+C:\Code\bluegate\src\BlueGate.Common\bin\Debug\net8.0\BlueGate.Common.deps.json
+C:\Code\bluegate\src\BlueGate.Common\bin\Debug\net8.0\BlueGate.Common.dll
+C:\Code\bluegate\src\BlueGate.Common\bin\Debug\net8.0\BlueGate.Common.pdb
+C:\Code\bluegate\src\BlueGate.Common\obj\Debug\net8.0\BlueGate.Common.GeneratedMSBuildEditorConfig.editorconfig
+C:\Code\bluegate\src\BlueGate.Common\obj\Debug\net8.0\BlueGate.Common.AssemblyInfoInputs.cache
+C:\Code\bluegate\src\BlueGate.Common\obj\Debug\net8.0\BlueGate.Common.AssemblyInfo.cs
+C:\Code\bluegate\src\BlueGate.Common\obj\Debug\net8.0\BlueGate.Common.csproj.CoreCompileInputs.cache
+C:\Code\bluegate\src\BlueGate.Common\obj\Debug\net8.0\BlueGate.Common.dll
+C:\Code\bluegate\src\BlueGate.Common\obj\Debug\net8.0\refint\BlueGate.Common.dll
+C:\Code\bluegate\src\BlueGate.Common\obj\Debug\net8.0\BlueGate.Common.pdb
+C:\Code\bluegate\src\BlueGate.Common\obj\Debug\net8.0\ref\BlueGate.Common.dll

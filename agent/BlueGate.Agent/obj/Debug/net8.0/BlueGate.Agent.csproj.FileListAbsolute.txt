@@ -1,0 +1,14 @@
+C:\Code\bluegate\agent\BlueGate.Agent\bin\Debug\net8.0\BlueGate.Agent.exe
+C:\Code\bluegate\agent\BlueGate.Agent\bin\Debug\net8.0\BlueGate.Agent.deps.json
+C:\Code\bluegate\agent\BlueGate.Agent\bin\Debug\net8.0\BlueGate.Agent.runtimeconfig.json
+C:\Code\bluegate\agent\BlueGate.Agent\bin\Debug\net8.0\BlueGate.Agent.dll
+C:\Code\bluegate\agent\BlueGate.Agent\bin\Debug\net8.0\BlueGate.Agent.pdb
+C:\Code\bluegate\agent\BlueGate.Agent\obj\Debug\net8.0\BlueGate.Agent.GeneratedMSBuildEditorConfig.editorconfig
+C:\Code\bluegate\agent\BlueGate.Agent\obj\Debug\net8.0\BlueGate.Agent.AssemblyInfoInputs.cache
+C:\Code\bluegate\agent\BlueGate.Agent\obj\Debug\net8.0\BlueGate.Agent.AssemblyInfo.cs
+C:\Code\bluegate\agent\BlueGate.Agent\obj\Debug\net8.0\BlueGate.Agent.csproj.CoreCompileInputs.cache
+C:\Code\bluegate\agent\BlueGate.Agent\obj\Debug\net8.0\BlueGate.Agent.dll
+C:\Code\bluegate\agent\BlueGate.Agent\obj\Debug\net8.0\refint\BlueGate.Agent.dll
+C:\Code\bluegate\agent\BlueGate.Agent\obj\Debug\net8.0\BlueGate.Agent.pdb
+C:\Code\bluegate\agent\BlueGate.Agent\obj\Debug\net8.0\BlueGate.Agent.genruntimeconfig.cache
+C:\Code\bluegate\agent\BlueGate.Agent\obj\Debug\net8.0\ref\BlueGate.Agent.dll

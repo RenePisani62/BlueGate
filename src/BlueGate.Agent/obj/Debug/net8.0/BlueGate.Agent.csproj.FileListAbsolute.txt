@@ -1,0 +1,5 @@
+C:\Code\bluegate\src\BlueGate.Agent\obj\Debug\net8.0\BlueGate.Agent.csproj.AssemblyReference.cache
+C:\Code\bluegate\src\BlueGate.Agent\obj\Debug\net8.0\BlueGate.Agent.GeneratedMSBuildEditorConfig.editorconfig
+C:\Code\bluegate\src\BlueGate.Agent\obj\Debug\net8.0\BlueGate.Agent.AssemblyInfoInputs.cache
+C:\Code\bluegate\src\BlueGate.Agent\obj\Debug\net8.0\BlueGate.Agent.AssemblyInfo.cs
+C:\Code\bluegate\src\BlueGate.Agent\obj\Debug\net8.0\BlueGate.Agent.csproj.CoreCompileInputs.cache
