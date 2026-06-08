@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BlueGate.Agent")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3324b53e2f902206cf14f991f962f27d191bb4ea")]
 [assembly: System.Reflection.AssemblyProductAttribute("BlueGate.Agent")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BlueGate.Agent")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

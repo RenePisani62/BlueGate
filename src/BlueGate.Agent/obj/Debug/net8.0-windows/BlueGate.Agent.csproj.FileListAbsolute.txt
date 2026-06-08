@@ -19,3 +19,4 @@ C:\Code\bluegate\src\BlueGate.Agent\obj\Debug\net8.0-windows\refint\BlueGate.Age
 C:\Code\bluegate\src\BlueGate.Agent\obj\Debug\net8.0-windows\BlueGate.Agent.pdb
 C:\Code\bluegate\src\BlueGate.Agent\obj\Debug\net8.0-windows\BlueGate.Agent.genruntimeconfig.cache
 C:\Code\bluegate\src\BlueGate.Agent\obj\Debug\net8.0-windows\ref\BlueGate.Agent.dll
+C:\Code\bluegate\src\BlueGate.Agent\obj\Debug\net8.0-windows\BlueGate.Agent.sourcelink.json

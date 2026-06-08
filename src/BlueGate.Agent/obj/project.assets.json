@@ -98,11 +98,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\code\\bluegate\\src\\BlueGate.Agent\\BlueGate.Agent.csproj",
+      "projectUniqueName": "C:\\Code\\bluegate\\src\\BlueGate.Agent\\BlueGate.Agent.csproj",
       "projectName": "BlueGate.Agent",
-      "projectPath": "C:\\code\\bluegate\\src\\BlueGate.Agent\\BlueGate.Agent.csproj",
+      "projectPath": "C:\\Code\\bluegate\\src\\BlueGate.Agent\\BlueGate.Agent.csproj",
       "packagesPath": "C:\\Users\\Rene\\.nuget\\packages\\",
-      "outputPath": "C:\\code\\bluegate\\src\\BlueGate.Agent\\obj\\",
+      "outputPath": "C:\\Code\\bluegate\\src\\BlueGate.Agent\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Rene\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -119,8 +119,8 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "projectReferences": {
-            "C:\\code\\bluegate\\src\\BlueGate.Common\\BlueGate.Common.csproj": {
-              "projectPath": "C:\\code\\bluegate\\src\\BlueGate.Common\\BlueGate.Common.csproj"
+            "C:\\Code\\bluegate\\src\\BlueGate.Common\\BlueGate.Common.csproj": {
+              "projectPath": "C:\\Code\\bluegate\\src\\BlueGate.Common\\BlueGate.Common.csproj"
             }
           }
         }

@@ -5,31 +5,48 @@ Console.WriteLine();
 
 try
 {
-    string query = "*[System[(EventID=3)]]";
+    string logName = "Microsoft-Windows-Sysmon/Operational";
+    string query = "*[System[(EventID=1)]]";
 
     EventLogQuery eventQuery = new EventLogQuery(
-        "Microsoft-Windows-Sysmon/Operational",
+        logName,
         PathType.LogName,
         query);
 
     using EventLogReader reader = new EventLogReader(eventQuery);
 
     int count = 0;
+    int maxEventsToDisplay = 10;
 
-    while (true)
+   while (count < maxEventsToDisplay)
+{
+    EventRecord record = reader.ReadEvent();
+
+    if (record is null)
     {
-        EventRecord record = reader.ReadEvent();
-
-        if (record is null)
-        {
-            break;
-        }
-
-        count++;
-        record.Dispose();
+        break;
     }
 
-    Console.WriteLine($"Found {count} Sysmon Network Connection Events");
+    string xml = record.ToXml();
+
+    Console.WriteLine("Process Created");
+    Console.WriteLine("----------------");
+
+    Console.WriteLine($"Time: {record.TimeCreated}");
+    Console.WriteLine();
+
+    Console.WriteLine(xml);
+    Console.WriteLine();
+
+    Console.WriteLine("====================================");
+    Console.WriteLine();
+
+    count++;
+
+    record.Dispose();
+}
+
+    Console.WriteLine($"Displayed {count} Sysmon Process Create events.");
 }
 catch (Exception ex)
 {
@@ -37,4 +54,4 @@ catch (Exception ex)
 }
 
 Console.WriteLine();
-Console.WriteLine("BlueGate Agent Running...");
+Console.WriteLine("BlueGate Agent Finished.");
