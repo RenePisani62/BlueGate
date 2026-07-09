@@ -1,0 +1,5 @@
+<Sysmon schemaversion="4.90">
+  <EventFiltering>
+    <NetworkConnect onmatch="exclude" />
+  </EventFiltering>
+</Sysmon>

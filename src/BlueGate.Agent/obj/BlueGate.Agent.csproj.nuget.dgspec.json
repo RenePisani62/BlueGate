@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Code\\bluegate\\src\\BlueGate.Agent\\BlueGate.Agent.csproj": {}
+    "C:\\Code\\bluegate\\src\\bluegate.agent\\BlueGate.Agent.csproj": {}
   },
   "projects": {
-    "C:\\Code\\bluegate\\src\\BlueGate.Agent\\BlueGate.Agent.csproj": {
+    "C:\\Code\\bluegate\\src\\bluegate.agent\\BlueGate.Agent.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Code\\bluegate\\src\\BlueGate.Agent\\BlueGate.Agent.csproj",
+        "projectUniqueName": "C:\\Code\\bluegate\\src\\bluegate.agent\\BlueGate.Agent.csproj",
         "projectName": "BlueGate.Agent",
-        "projectPath": "C:\\Code\\bluegate\\src\\BlueGate.Agent\\BlueGate.Agent.csproj",
+        "projectPath": "C:\\Code\\bluegate\\src\\bluegate.agent\\BlueGate.Agent.csproj",
         "packagesPath": "C:\\Users\\Rene\\.nuget\\packages\\",
-        "outputPath": "C:\\Code\\bluegate\\src\\BlueGate.Agent\\obj\\",
+        "outputPath": "C:\\Code\\bluegate\\src\\bluegate.agent\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Rene\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "axGGm2v6XIa3D3LlcS0x32QYtBqID+4XIFbTzQfpEdvyD77Gx157B1112CsDa/JCjZRZEEvF+QL13BrRZsZWdQ==",
+  "dgSpecHash": "NJRWMyCohaTEcSeXRRckoArFzw9ch3ETLxE7DNyRMHMlhWqacXrU8jd67gK91+RWuQPE0ycdHj73oCtWBx43IA==",
   "success": true,
-  "projectFilePath": "C:\\Code\\bluegate\\src\\BlueGate.Agent\\BlueGate.Agent.csproj",
+  "projectFilePath": "C:\\Code\\bluegate\\src\\bluegate.agent\\BlueGate.Agent.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Rene\\.nuget\\packages\\system.diagnostics.eventlog\\8.0.0\\system.diagnostics.eventlog.8.0.0.nupkg.sha512"
   ],
