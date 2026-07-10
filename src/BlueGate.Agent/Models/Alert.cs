@@ -14,5 +14,5 @@ public class Alert
 
     public string Description { get; set; } = string.Empty;
 
-   public ProcessEvent Event { get; set; } = null!;
+  public SysmonNetworkEvent Event { get; set; } = null!;
 }

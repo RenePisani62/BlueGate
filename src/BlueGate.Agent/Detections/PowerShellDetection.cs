@@ -4,9 +4,9 @@ namespace BlueGate.Agent.Detections;
 
 public static class PowerShellDetection
 {
-    public static bool IsMatch(ProcessEvent processEvent)
+    public static bool IsMatch(SysmonNetworkEvent networkEvent)
     {
-        return processEvent.Image
+        return networkEvent.Image
             .ToLower()
             .Contains("powershell");
     }

@@ -4,20 +4,20 @@ namespace BlueGate.Agent.Detections;
 
 public class DetectionEngine
 {
-    public List<Alert> Analyse(IEnumerable<ProcessEvent> processEvents)
+    public List<Alert> Analyse(IEnumerable<SysmonNetworkEvent> events)
     {
         var alerts = new List<Alert>();
 
-        foreach (var processEvent in processEvents)
+        foreach (var ev in events)
         {
-            if (PowerShellDetection.IsMatch(processEvent))
+            if (PowerShellDetection.IsMatch(ev))
             {
                 alerts.Add(new Alert
                 {
-                    RuleName = "PowerShell Activity Detected",
+                    RuleName = "PowerShell Outbound Connection",
                     Severity = "Medium",
-                    Description = "A PowerShell process was observed.",
-                    Event = processEvent
+                    Description = "PowerShell initiated an outbound network connection.",
+                    Event = ev
                 });
             }
         }
