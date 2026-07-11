@@ -4,21 +4,28 @@ namespace BlueGate.Agent.Detections;
 
 public class DetectionEngine
 {
+    private readonly List<IDetectionRule> _rules;
+
+    public DetectionEngine()
+    {
+        _rules =
+        [
+            new PowerShellDetection()
+        ];
+    }
+
     public List<Alert> Analyse(IEnumerable<SysmonNetworkEvent> events)
     {
         var alerts = new List<Alert>();
 
         foreach (var ev in events)
         {
-            if (PowerShellDetection.IsMatch(ev))
+            foreach (var rule in _rules)
             {
-                alerts.Add(new Alert
+                if (rule.IsMatch(ev))
                 {
-                    RuleName = "PowerShell Outbound Connection",
-                    Severity = "Medium",
-                    Description = "PowerShell initiated an outbound network connection.",
-                    Event = ev
-                });
+                    alerts.Add(rule.CreateAlert(ev));
+                }
             }
         }
 

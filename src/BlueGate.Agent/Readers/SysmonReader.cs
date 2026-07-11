@@ -43,6 +43,7 @@ public class SysmonReader
 
             results.Add(new SysmonNetworkEvent
             {
+                EventRecordId = record.RecordId ?? 0,
                 TimeCreated = record.TimeCreated ?? DateTime.MinValue,
                 Image = Get("Image"),
                 User = Get("User"),

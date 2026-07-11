@@ -14,5 +14,15 @@ public class Alert
 
     public string Description { get; set; } = string.Empty;
 
+    public string MitreTechniqueId { get; set; } = string.Empty;
+
+    public string MitreTechniqueName { get; set; } = string.Empty;
+
+    public string MitreTacticId { get; set; } = string.Empty;
+
+    public string MitreTacticName { get; set; } = string.Empty;
+
+    public string MitreReference { get; set; } = string.Empty;
+
   public SysmonNetworkEvent Event { get; set; } = null!;
 }

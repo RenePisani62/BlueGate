@@ -11,4 +11,5 @@ public class SysmonNetworkEvent
     public string? DestinationPort { get; set; }
     public string? Protocol { get; set; }
     public string? User { get; set; }
+    public long EventRecordId { get; set; }
 }
