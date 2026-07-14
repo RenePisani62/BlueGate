@@ -9,6 +9,8 @@ public class BlueGateAgent
     private readonly SysmonReader _sysmonReader;
     private readonly DetectionEngine _detectionEngine;
     private readonly AlertRepository _alertRepository;
+    
+    private readonly ConfigurationRepository _configurationRepository;
     private readonly string _databasePath;
 
     private long _lastProcessedEventRecordId;
@@ -24,12 +26,41 @@ public class BlueGateAgent
             "bluegate.db");
 
         _alertRepository = new AlertRepository(_databasePath);
+        _configurationRepository =
+    new ConfigurationRepository(_databasePath);
         _alertRepository.Initialise();
+        _configurationRepository.Initialise();
     }
    public void Run()
 {
+    var checkpoint =
+    _configurationRepository.GetValue(
+        "LastProcessedEventRecordId");
+        if (checkpoint is null)
+{
+    Console.WriteLine(
+        "No previous checkpoint found.");
+
     _lastProcessedEventRecordId =
         _sysmonReader.GetLatestNetworkEventRecordId();
+
+    _configurationRepository.SetValue(
+        "LastProcessedEventRecordId",
+        _lastProcessedEventRecordId.ToString());
+
+    Console.WriteLine(
+        $"Created baseline at EventRecordId " +
+        $"{_lastProcessedEventRecordId}");
+}
+else
+{
+    _lastProcessedEventRecordId =
+        long.Parse(checkpoint);
+
+    Console.WriteLine(
+        $"Loaded checkpoint " +
+        $"{_lastProcessedEventRecordId}");
+}
 
     Console.WriteLine("BlueGate continuous monitoring started.");
     Console.WriteLine(
