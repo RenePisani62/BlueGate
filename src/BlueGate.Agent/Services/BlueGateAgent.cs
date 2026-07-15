@@ -31,36 +31,40 @@ public class BlueGateAgent
         _alertRepository.Initialise();
         _configurationRepository.Initialise();
     }
-   public void Run()
+  public void Run()
 {
     var checkpoint =
-    _configurationRepository.GetValue(
-        "LastProcessedEventRecordId");
-        if (checkpoint is null)
-{
-    Console.WriteLine(
-        "No previous checkpoint found.");
+        _configurationRepository.GetValue(
+            "LastProcessedEventRecordId");
 
-    _lastProcessedEventRecordId =
-        _sysmonReader.GetLatestNetworkEventRecordId();
+    if (checkpoint is null)
+    {
+        Console.WriteLine(
+            "No previous checkpoint found.");
 
-    _configurationRepository.SetValue(
-        "LastProcessedEventRecordId",
-        _lastProcessedEventRecordId.ToString());
+        _lastProcessedEventRecordId =
+            _sysmonReader.GetLatestNetworkEventRecordId();
 
-    Console.WriteLine(
-        $"Created baseline at EventRecordId " +
-        $"{_lastProcessedEventRecordId}");
-}
-else
-{
-    _lastProcessedEventRecordId =
-        long.Parse(checkpoint);
+        _configurationRepository.SetValue(
+            "LastProcessedEventRecordId",
+            _lastProcessedEventRecordId.ToString());
 
-    Console.WriteLine(
-        $"Loaded checkpoint " +
-        $"{_lastProcessedEventRecordId}");
-}
+        Console.WriteLine(
+            $"Created baseline at EventRecordId " +
+            $"{_lastProcessedEventRecordId}");
+    }
+    else
+    {
+        _lastProcessedEventRecordId =
+            long.Parse(checkpoint);
+
+        Console.WriteLine(
+            $"Loaded checkpoint " +
+            $"{_lastProcessedEventRecordId}");
+    }
+
+    // Keep the rest of your existing Run() method here.
+
 
     Console.WriteLine("BlueGate continuous monitoring started.");
     Console.WriteLine(
@@ -108,6 +112,16 @@ else
 
             DisplayAlert(alert);
         }
+        if (events.Count > 0)
+{
+    _configurationRepository.SetValue(
+        "LastProcessedEventRecordId",
+        _lastProcessedEventRecordId.ToString());
+
+    Console.WriteLine(
+        $"Checkpoint updated to EventRecordId " +
+        $"{_lastProcessedEventRecordId}");
+}
 
         Console.WriteLine(
             $"Generated {alerts.Count} alert(s) this run.");
