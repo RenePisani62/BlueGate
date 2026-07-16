@@ -1,6 +1,9 @@
 using BlueGate.Agent.Data;
 using BlueGate.Agent.Detections;
 using BlueGate.Agent.Readers;
+using BlueGate.Agent.Models;
+using BlueGate.Agent.Presentation;
+using System.Diagnostics;
 
 namespace BlueGate.Agent.Services;
 
@@ -9,9 +12,11 @@ public class BlueGateAgent
     private readonly SysmonReader _sysmonReader;
     private readonly DetectionEngine _detectionEngine;
     private readonly AlertRepository _alertRepository;
-    
+    private readonly ConsoleDashboard _dashboard;
     private readonly ConfigurationRepository _configurationRepository;
     private readonly string _databasePath;
+    private readonly DateTime _startedAt = DateTime.Now;
+    
 
     private long _lastProcessedEventRecordId;
 
@@ -30,6 +35,8 @@ public class BlueGateAgent
     new ConfigurationRepository(_databasePath);
         _alertRepository.Initialise();
         _configurationRepository.Initialise();
+
+        _dashboard = new ConsoleDashboard();
     }
   public void Run()
 {
@@ -77,16 +84,17 @@ public class BlueGateAgent
     {
         RunOnce();
 
-        Console.WriteLine("Waiting 5 seconds...");
-        Console.WriteLine();
+        // Console.WriteLine("Waiting 5 seconds...");
+        // Console.WriteLine();
 
         Thread.Sleep(5000);
     }
 }
     public void RunOnce()
     {
-        Console.WriteLine("BlueGate Agent Starting...");
-        Console.WriteLine();
+        var stopwatch = Stopwatch.StartNew();
+        // Console.WriteLine("BlueGate Agent Starting...");
+        // Console.WriteLine();
 
         var events = _sysmonReader.GetNetworkEventsAfter(
     _lastProcessedEventRecordId);
@@ -96,9 +104,9 @@ public class BlueGateAgent
         events.Max(networkEvent => networkEvent.EventRecordId);
 }
 
-        Console.WriteLine(
-    $"Found {events.Count} new Sysmon network event(s).");
-        Console.WriteLine();
+       //  Console.WriteLine(
+    // $"Found {events.Count} new Sysmon network event(s).");
+        // Console.WriteLine();
 
         var alerts = _detectionEngine.Analyse(events);
         var savedAlertCount = 0;
@@ -133,8 +141,23 @@ public class BlueGateAgent
         Console.WriteLine();
 
         DisplayStoredAlerts();
+        
+        stopwatch.Stop();
 
-        Console.WriteLine("BlueGate Agent Finished.");
+var cycleResult = new AgentCycleResult
+{
+    Checkpoint = _lastProcessedEventRecordId,
+    EventsRead = events.Count,
+    AlertsGenerated = alerts.Count,
+    AlertsSaved = savedAlertCount,
+    Duration = stopwatch.Elapsed,
+    DatabaseAvailable = true,
+    CompletedAt = DateTime.Now,
+    Uptime = DateTime.Now - _startedAt
+};
+
+_dashboard.DisplayCycle(cycleResult);
+    // Console.WriteLine("BlueGate Agent Finished.");
     }
 
     private void DisplayAlert(Models.Alert alert)
