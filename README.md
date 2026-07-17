@@ -124,3 +124,19 @@ Advanced Features
 Early development.
 
 Currently implementing telemetry collection through Sysmon and Windows Event Logs.
+
+### 17 July 2026
+
+- Introduced the HealthMonitor component.
+- Added the HealthStatus DTO to separate health reporting from monitoring statistics.
+- Refactored the Console Dashboard to display HealthStatus information instead of hard-coded values.
+- Added the first operator dashboard screenshot.
+- Began introducing dependency injection into HealthMonitor.
+
+Implemented BlueGate's first genuine runtime health check. HealthMonitor now
+uses AlertRepository to verify SQLite connectivity, and the console dashboard
+reports the live database status.
+
+## Console Dashboard
+
+![BlueGate console dashboard](docs/Images/BlueGate_Console_17072026.png)

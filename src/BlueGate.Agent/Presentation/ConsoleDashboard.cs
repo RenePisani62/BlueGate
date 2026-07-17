@@ -14,8 +14,12 @@ public class ConsoleDashboard
         
         WriteValue(
             "Status",
-            "Monitoring",
-        ConsoleColor.Green);
+            result.Health.MonitoringActive
+                ? "Monitoring"
+                : "Stopped",
+            result.Health.MonitoringActive
+                 ? ConsoleColor.Green
+                    : ConsoleColor.Red);
         
         // Console.WriteLine(
         //     $"Database            : " +
@@ -29,6 +33,15 @@ public class ConsoleDashboard
                     result.DatabaseAvailable
             ? ConsoleColor.Green
             : ConsoleColor.Red);
+
+             WriteValue(
+                 "Sysmon",
+                 result.Health.SysmonAvailable
+                     ? "Available"
+                     : "Unavailable",
+                 result.Health.SysmonAvailable
+                     ? ConsoleColor.Green
+                     : ConsoleColor.Red);    
         
         // Console.WriteLine($"Checkpoint          : {result.Checkpoint}");
         
@@ -37,6 +50,13 @@ public class ConsoleDashboard
                 result.Checkpoint.ToString(),
         ConsoleColor.Cyan);
 
+
+        WriteValue(
+            "Last Error",
+                result.Health.LastError,
+                 result.Health.LastError == "None"
+                ? ConsoleColor.Green
+                 : ConsoleColor.Red);
 
         // Console.WriteLine($"Events Read         : {result.EventsRead}");
         
@@ -72,6 +92,13 @@ public class ConsoleDashboard
             $"Cycle Duration      : {result.Duration.TotalMilliseconds:F0} ms");
         Console.WriteLine(
     $"Last Updated        : {result.CompletedAt:yyyy-MM-dd HH:mm:ss}");
+        
+        WriteValue(
+            "Last Successful Poll",
+            result.LastSuccessfulPoll
+            .ToString("yyyy-MM-dd HH:mm:ss"),
+         ConsoleColor.Green);
+        
         Console.WriteLine("Next Poll           : 5 seconds");
         Console.WriteLine();
         Console.WriteLine("====================================================");

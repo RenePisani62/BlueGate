@@ -4,6 +4,7 @@ using BlueGate.Agent.Readers;
 using BlueGate.Agent.Models;
 using BlueGate.Agent.Presentation;
 using System.Diagnostics;
+using BlueGate.Agent.Health;
 
 namespace BlueGate.Agent.Services;
 
@@ -16,7 +17,7 @@ public class BlueGateAgent
     private readonly ConfigurationRepository _configurationRepository;
     private readonly string _databasePath;
     private readonly DateTime _startedAt = DateTime.Now;
-    
+    private readonly HealthMonitor _healthMonitor;
 
     private long _lastProcessedEventRecordId;
 
@@ -35,6 +36,7 @@ public class BlueGateAgent
     new ConfigurationRepository(_databasePath);
         _alertRepository.Initialise();
         _configurationRepository.Initialise();
+        _healthMonitor = new HealthMonitor(_alertRepository);
 
         _dashboard = new ConsoleDashboard();
     }
@@ -143,7 +145,7 @@ public class BlueGateAgent
         DisplayStoredAlerts();
         
         stopwatch.Stop();
-
+var healthStatus = _healthMonitor.GetStatus();
 var cycleResult = new AgentCycleResult
 {
     Checkpoint = _lastProcessedEventRecordId,
@@ -153,9 +155,11 @@ var cycleResult = new AgentCycleResult
     Duration = stopwatch.Elapsed,
     DatabaseAvailable = true,
     CompletedAt = DateTime.Now,
-    Uptime = DateTime.Now - _startedAt
+    Uptime = DateTime.Now - _startedAt,
+    Health = healthStatus,
+    LastSuccessfulPoll = DateTime.Now
 };
-
+    
 _dashboard.DisplayCycle(cycleResult);
     // Console.WriteLine("BlueGate Agent Finished.");
     }

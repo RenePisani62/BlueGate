@@ -248,4 +248,18 @@ CREATE TABLE IF NOT EXISTS Alerts
             ? DBNull.Value
             : value;
     }
+    public bool TestConnection()
+{
+    try
+    {
+        using var connection = new SqliteConnection(_connectionString);
+        connection.Open();
+
+        return true;
+    }
+    catch
+    {
+        return false;
+    }
+}
 }
