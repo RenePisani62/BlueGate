@@ -129,3 +129,29 @@ This represents the first complete persistence loop in the project.
   * alerts by rule;
   * alerts by MITRE technique.
 * Prepare the agent for continuous event processing.
+
+### 18 July 2026
+
+Implemented genuine Sysmon availability monitoring and completed failure-path
+testing for both SQLite and Sysmon.
+
+Testing exposed a hard-coded database availability value in BlueGateAgent that
+overrode the result produced by HealthMonitor. The mapping was corrected so the
+console dashboard now reports verified runtime health values.
+
+Confirmed dashboard behaviour:
+
+- SQLite healthy: Connected
+- SQLite simulated failure: Unavailable
+- Sysmon healthy: Available
+- Sysmon simulated failure: Unavailable
+
+## Current Health Monitoring
+
+BlueGate currently verifies:
+
+- SQLite database connectivity through `AlertRepository.TestConnection()`
+- Sysmon Operational log accessibility through `SysmonReader.IsAvailable()`
+
+Health checks are coordinated by `HealthMonitor`, stored in `HealthStatus` and
+displayed by the console dashboard.

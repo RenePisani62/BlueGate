@@ -89,7 +89,23 @@ public List<SysmonNetworkEvent> GetNetworkEventsAfter(
     return results;
 }
     private const string SysmonLogName = "Microsoft-Windows-Sysmon/Operational";
+   public bool IsAvailable()
+{
+    try
+    {
+        var eventQuery = new EventLogQuery(
+            SysmonLogName,
+            PathType.LogName);
 
+        using var reader = new EventLogReader(eventQuery);
+
+        return true;
+    }
+    catch
+    {
+        return false;
+    }
+}
     public List<SysmonNetworkEvent> GetRecentNetworkEvents(int maxEvents = 10)
     {
         var results = new List<SysmonNetworkEvent>();

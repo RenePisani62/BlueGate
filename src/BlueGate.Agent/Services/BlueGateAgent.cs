@@ -36,7 +36,10 @@ public class BlueGateAgent
     new ConfigurationRepository(_databasePath);
         _alertRepository.Initialise();
         _configurationRepository.Initialise();
-        _healthMonitor = new HealthMonitor(_alertRepository);
+        
+        _healthMonitor = new HealthMonitor(
+            _alertRepository,
+         _sysmonReader);
 
         _dashboard = new ConsoleDashboard();
     }
@@ -153,7 +156,7 @@ var cycleResult = new AgentCycleResult
     AlertsGenerated = alerts.Count,
     AlertsSaved = savedAlertCount,
     Duration = stopwatch.Elapsed,
-    DatabaseAvailable = true,
+    DatabaseAvailable = healthStatus.DatabaseConnected,
     CompletedAt = DateTime.Now,
     Uptime = DateTime.Now - _startedAt,
     Health = healthStatus,

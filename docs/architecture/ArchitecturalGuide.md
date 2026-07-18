@@ -31,3 +31,113 @@ or, a little more descriptive:
 Added ConsoleDashboard, AgentCycleResult and operator monitoring dashboard
 
 I slightly prefer the second one because it tells you exactly what changed when you're browsing the Git history months from now.
+
+## Runtime Health Monitoring
+
+BlueGate performs health checks against the external resources required by the
+agent.
+
+### Responsibilities
+
+#### AlertRepository
+
+Owns SQLite-specific access logic.
+
+```text
+TestConnection()
+    attempts to open SQLite
+    returns true or false
+
+SysmonReader
+
+Owns Windows Event Log and Sysmon-specific access logic.
+
+IsAvailable()
+    attempts to open the Sysmon Operational log
+    returns true or false
+HealthMonitor
+
+Coordinates dependency health checks.
+
+It does not directly implement SQLite or Windows Event Log access. Instead, it
+calls the components that own that technical knowledge.
+
+HealthMonitor
+    ├── AlertRepository.TestConnection()
+    └── SysmonReader.IsAvailable()
+HealthStatus
+
+Carries the resulting health state.
+
+DatabaseConnected
+SysmonAvailable
+MonitoringActive
+LastSuccessfulPoll
+LastError
+BlueGateAgent
+
+Runs the monitoring cycle and transfers HealthStatus into AgentCycleResult.
+
+Health values must be copied from HealthStatus rather than replaced with
+hard-coded values.
+
+ConsoleDashboard
+
+Renders the health information for the operator. It does not perform health
+checks itself.
+
+Health Data Flow
+SQLite
+   ▲
+AlertRepository
+   │
+   ├──────────────┐
+   │              │
+   ▼              │
+HealthMonitor     │
+   ▲              │
+   │              │
+SysmonReader      │
+   ▲              │
+   │              │
+Windows Event Log│
+                  │
+HealthMonitor creates HealthStatus
+                  │
+                  ▼
+             BlueGateAgent
+                  │
+                  ▼
+           AgentCycleResult
+                  │
+                  ▼
+          ConsoleDashboard
+Design Rule
+
+HealthMonitor is the authoritative coordinator of operational health.
+
+Low-level components determine whether their own resources are available.
+HealthStatus carries those results, and downstream components must preserve
+them without substituting assumptions or hard-coded values.
+
+
+A slightly cleaner diagram would be:
+
+```text
+SQLite ─────────► AlertRepository ───────┐
+                                         │
+Sysmon Event Log ► SysmonReader ─────────┤
+                                         ▼
+                                  HealthMonitor
+                                         │
+                                         ▼
+                                   HealthStatus
+                                         │
+                                         ▼
+                                   BlueGateAgent
+                                         │
+                                         ▼
+                                  AgentCycleResult
+                                         │
+                                         ▼
+                                 ConsoleDashboard
