@@ -1,4 +1,4 @@
-namespace BlueGate.Agent.Health;
+namespace BlueGate.Common.Models;
 
 public class HealthStatus
 {

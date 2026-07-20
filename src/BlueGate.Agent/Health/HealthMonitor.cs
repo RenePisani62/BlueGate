@@ -1,6 +1,7 @@
 using BlueGate.Agent.Data;
 using BlueGate.Agent.Readers;
 namespace BlueGate.Agent.Health;
+using BlueGate.Common.Models;
 
 
     public class HealthMonitor

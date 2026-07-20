@@ -1,0 +1,16 @@
+﻿@page
+@model IndexModel
+
+@{
+    ViewData["Title"] = "BlueGate Security Monitor";
+}
+
+<h1>BlueGate Security Monitor</h1>
+
+<p>Monitoring Active: @Model.Health?.MonitoringActive</p>
+
+<p>Database Connected: @Model.Health?.DatabaseConnected</p>
+
+<p>Sysmon Available: @Model.Health?.SysmonAvailable</p>
+
+<p>Windows Endpoint Detection Platform</p>

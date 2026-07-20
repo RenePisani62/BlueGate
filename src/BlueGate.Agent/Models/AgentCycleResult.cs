@@ -1,5 +1,6 @@
 namespace BlueGate.Agent.Models;
 using BlueGate.Agent.Health;
+using BlueGate.Common.Models;
 
 
 public class AgentCycleResult

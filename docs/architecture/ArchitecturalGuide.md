@@ -141,3 +141,24 @@ Sysmon Event Log ► SysmonReader ─────────┤
                                          │
                                          ▼
                                  ConsoleDashboard
+
+                                 ## Dependency Injection Introduced
+
+BlueGate.Server now relies upon ASP.NET Core's built-in Dependency Injection container.
+
+Health status retrieval is abstracted behind:
+
+IHealthStatusProvider
+
+Current implementation:
+
+HealthStatusProvider
+
+Future implementations may include:
+
+- Local Agent Provider
+- Remote REST Provider
+- SignalR Provider
+- Multi-Agent Provider
+
+The PageModel now depends only upon the interface rather than a concrete implementation.
