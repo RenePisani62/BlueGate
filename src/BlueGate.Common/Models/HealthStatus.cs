@@ -7,6 +7,7 @@ public class HealthStatus
     public bool SysmonAvailable { get; set; }
 
     public bool MonitoringActive { get; set; }
+    public int AlertCount { get; init; }
 
     public DateTime LastSuccessfulPoll { get; set; }
 

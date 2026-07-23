@@ -162,3 +162,27 @@ Future implementations may include:
 - Multi-Agent Provider
 
 The PageModel now depends only upon the interface rather than a concrete implementation.
+
+## Dashboard Health Monitoring
+
+BlueGate.Server now performs live health checks rather than relying
+upon static values.
+
+Current live telemetry:
+
+- SQLite connectivity
+- Alert count
+
+Health information is gathered by HealthStatusProvider.
+
+Future work will migrate all SQL operations into AlertRepository so
+that HealthStatusProvider only coordinates health information rather
+than directly accessing the database.
+
+This establishes the following architecture:
+
+Browser
+→ Razor Page
+→ HealthStatusProvider
+→ AlertRepository
+→ SQLite
