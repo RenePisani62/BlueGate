@@ -13,6 +13,61 @@
 
 <p>Alert Count: @Model.Health?.AlertCount</p>
 
+@if (Model.Health?.LatestAlert is not null)
+{
+    <section>
+        <h2>Latest Alert</h2>
+
+        <p>
+            <strong>Rule:</strong>
+            @Model.Health.LatestAlert.RuleName
+        </p>
+
+        <p>
+            <strong>Severity:</strong>
+            @Model.Health.LatestAlert.Severity
+        </p>
+
+        <p>
+            <strong>Description:</strong>
+            @Model.Health.LatestAlert.Description
+        </p>
+
+        <p>
+            <strong>Process:</strong>
+            @Model.Health.LatestAlert.ProcessImage
+        </p>
+
+        <p>
+            <strong>User:</strong>
+            @Model.Health.LatestAlert.UserName
+        </p>
+
+        <p>
+            <strong>MITRE technique:</strong>
+            @Model.Health.LatestAlert.MitreTechniqueId
+            — @Model.Health.LatestAlert.MitreTechniqueName
+        </p>
+
+        <p>
+            <strong>Destination:</strong>
+            @Model.Health.LatestAlert.DestinationIp:@Model.Health.LatestAlert.DestinationPort
+        </p>
+
+        <p>
+            <strong>Time:</strong>
+            @Model.Health.LatestAlert.Timestamp
+        </p>
+    </section>
+}
+else
+{
+    <section>
+        <h2>Latest Alert</h2>
+        <p>No alerts are currently available.</p>
+    </section>
+}
+
 <p>Sysmon Available: @Model.Health?.SysmonAvailable</p>
 
 <p>Windows Endpoint Detection Platform</p>

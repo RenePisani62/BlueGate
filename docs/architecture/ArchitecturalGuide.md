@@ -186,3 +186,43 @@ Browser
 → HealthStatusProvider
 → AlertRepository
 → SQLite
+
+Dashboard Data Flow
+SQLite
+
+↓
+
+AlertRepository
+
+↓
+
+HealthStatusProvider
+
+↓
+
+HealthStatus
+    ├── MonitoringActive
+    ├── DatabaseConnected
+    ├── AlertCount
+    └── LatestAlert
+
+↓
+
+IndexModel
+
+↓
+
+Index.cshtml
+
+↓
+
+Dashboard
+Design Principle
+
+Repositories return domain models.
+
+Services assemble dashboard models.
+
+Pages display data only.
+
+This separation allows future UI changes without altering repository logic.

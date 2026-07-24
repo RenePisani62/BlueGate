@@ -1,20 +1,24 @@
 using BlueGate.Common.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Data.Sqlite;
+using BlueGate.Server.Services.Interfaces;
 
 namespace BlueGate.Server.Services;
 
 public class HealthStatusProvider : IHealthStatusProvider
 {
     private readonly IConfiguration _configuration;
+    
     private readonly ILogger<HealthStatusProvider> _logger;
-
-    public HealthStatusProvider(
+    private readonly IAlertRepository _alertRepository;
+   public HealthStatusProvider(
     IConfiguration configuration,
-    ILogger<HealthStatusProvider> logger)
+    ILogger<HealthStatusProvider> logger,
+    IAlertRepository alertRepository)
 {
     _configuration = configuration;
     _logger = logger;
+    _alertRepository = alertRepository;
 }
     
 
@@ -24,7 +28,12 @@ public class HealthStatusProvider : IHealthStatusProvider
         _configuration.GetConnectionString("BlueGateDatabase");
 
     bool databaseConnected = false;
-    int alertCount = 0;
+    int alertCount = _alertRepository.GetAlertCount();
+    var latestAlert =
+    _alertRepository.GetLatestAlert();
+    
+    AlertSummary? LatestAlert =
+    _alertRepository.GetLatestAlert();
 
     try
 {
@@ -35,17 +44,7 @@ public class HealthStatusProvider : IHealthStatusProvider
 
     databaseConnected = true;
 
-    using var command = connection.CreateCommand();
-
-    command.CommandText =
-        "SELECT COUNT(*) FROM Alerts;";
-
-    object? result = command.ExecuteScalar();
-
-    alertCount = Convert.ToInt32(result);
-
-    Console.WriteLine(
-        $"Alert Count = {alertCount}");
+      
 }
 catch (Exception ex)
 {
@@ -54,11 +53,12 @@ catch (Exception ex)
         "Unable to retrieve BlueGate database health information.");
 }
     return new HealthStatus
-    {
-        MonitoringActive = true,
-        DatabaseConnected = databaseConnected,
-        AlertCount = alertCount,
-        SysmonAvailable = true
-    };
+{
+    MonitoringActive = true,
+    DatabaseConnected = databaseConnected,
+    SysmonAvailable = true,
+    AlertCount = alertCount,
+    LatestAlert = latestAlert
+};
 }
 }

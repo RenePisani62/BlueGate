@@ -5,7 +5,7 @@ public class HealthStatus
     public bool DatabaseConnected { get; set; }
 
     public bool SysmonAvailable { get; set; }
-
+    public AlertSummary? LatestAlert { get; init; }
     public bool MonitoringActive { get; set; }
     public int AlertCount { get; init; }
 

@@ -1,10 +1,12 @@
 using BlueGate.Server.Services;
+using BlueGate.Server.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddSingleton<IHealthStatusProvider, HealthStatusProvider>();
+builder.Services.AddSingleton<IAlertRepository, AlertRepository>();
 
 var app = builder.Build();
 
